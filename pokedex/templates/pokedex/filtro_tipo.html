@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtro Tipo - Pokedex HP</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f4f8; padding: 20px; }
+        h1 { color: #0096d6; }
+        a { color: #0096d6; text-decoration: none; }
+        table { width: 100%; border-collapse: collapse; background-color: white; }
+        th { background-color: #0096d6; color: white; padding: 10px; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; text-align: center; }
+        tr:hover { background-color: #e6f4fb; }
+    </style>
+</head>
+<body>
+    <a href="/" style="
+        border: 2px solid #0096d6;
+        color: #0096d6;
+        background-color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 20px;
+        transition: all 0.2s;
+    "
+    onmouseover="this.style.backgroundColor='#0096d6'; this.style.color='white';"
+    onmouseout="this.style.backgroundColor='white'; this.style.color='#0096d6';">
+        ← Volver al inicio
+</a>
+    <h1>Pokemones tipo Grass</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipos</th>
+                <th>Altura</th>
+                <th>Peso</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pokemon in pokemon_list %}
+            <tr>
+                <td>{{ pokemon.pokemon_id }}</td>
+                <td>{{ pokemon.nombre }}</td>
+                <td>{{ pokemon.tipos }}</td>
+                <td>{{ pokemon.altura }}</td>
+                <td>{{ pokemon.peso }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

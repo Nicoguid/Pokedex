@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokedex HP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            padding: 20px;
+        }
+        h1 {
+            color: #0096d6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        th {
+            background-color: #0096d6;
+            color: white;
+            padding: 10px;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        tr:hover {
+            background-color: #e6f4fb;
+        }
+</style>
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="color: #0096d6;">Pokedex</h1>
+        <h1 style="color: #0096d6;">Laboratorio del Profesor Oak</h1>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <a href="/filtro-peso/" style="background-color: #0096d6; color: white; padding: 10px 15px; margin-right: 10px; border-radius: 5px; text-decoration: none;">Filtro Peso</a>
+        <a href="/filtro-tipo/" style="background-color: #0096d6; color: white; padding: 10px 15px; margin-right: 10px; border-radius: 5px; text-decoration: none;">Filtro Tipo Grass</a>
+        <a href="/filtro-combinado/" style="background-color: #0096d6; color: white; padding: 10px 15px; margin-right: 10px; border-radius: 5px; text-decoration: none;">Filtro Flying y Altura</a>
+        <a href="/transformacion/" style="background-color: #0096d6; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Nombres Invertidos</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipos</th>
+                <th>Altura</th>
+                <th>Peso</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pokemon in pokemon_list %}
+            <tr>
+                <td>{{ pokemon.pokemon_id }}</td>
+                <td>{{ pokemon.nombre }}</td>
+                <td>{{ pokemon.tipos }}</td>
+                <td>{{ pokemon.altura }}</td>
+                <td>{{ pokemon.peso }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
