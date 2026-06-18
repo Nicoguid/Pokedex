@@ -1,12 +1,12 @@
 # Pokedex
 
-Dashboard para visualizar y filtrar datos de la PokeAPI.
+Dashboard para visualizar y filtrar datos de la PokeAPI
 
-## Tecnologías
+## Tecnologias
 - Python
 - Django
 - Docker
 
-## Cómo correr el proyecto
+## Como correr el proyecto
 docker-compose up --build
 Acceder en: http://localhost:8000
