@@ -14,6 +14,7 @@ def fetch_and_save_pokemon():
         tipos = ", ".join([t["type"]["name"] for t in detalle["types"]])
         altura = detalle["height"]
         peso = detalle["weight"]
+        imagen = detalle["sprites"]["front_default"]
 
         Pokemon.objects.update_or_create(
             pokemon_id=pokemon_id,
@@ -22,5 +23,6 @@ def fetch_and_save_pokemon():
                 "tipos": tipos,
                 "altura": altura,
                 "peso": peso,
+                "imagen": imagen,
             }
         )

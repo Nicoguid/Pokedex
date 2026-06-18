@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Filtro Combinado - Pokedex HP</title>
+    <title>Filtro Combinado - Pokedex</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f0f4f8; padding: 20px; }
         h1 { color: #0096d6; }
@@ -41,9 +41,9 @@
                 <th>Peso</th>
             </tr>
         </thead>
-        <tbody>
+       <tbody>
             {% for pokemon in pokemon_list %}
-            <tr>
+            <tr class="pokemon-row" data-tipos="{{ pokemon.tipos }}">
                 <td>{{ pokemon.pokemon_id }}</td>
                 <td>{{ pokemon.nombre }}</td>
                 <td>{{ pokemon.tipos }}</td>
@@ -52,6 +52,66 @@
             </tr>
             {% endfor %}
         </tbody>
+    </table>
+    <script>
+    const colores = {
+        fire: '#ffe0cc',
+        water: '#cce5ff',
+        grass: '#ccf0d4',
+        poison: '#eeccff',
+        flying: '#ddeeff',
+        bug: '#e6ffcc',
+        normal: '#f0f0f0',
+        electric: '#fff9cc',
+        ground: '#f5e6cc',
+        fairy: '#ffe6f0',
+        fighting: '#ffcccc',
+        psychic: '#ffcce6',
+        rock: '#e6dcc8',
+        ice: '#ccf5ff',
+        ghost: '#d9ccff',
+        dragon: '#ccd4ff',
+        dark: '#d4cccc',
+        steel: '#dde6ee',
+    };
+
+    document.querySelectorAll('.pokemon-row').forEach(row => {
+        const tipos = row.dataset.tipos.split(', ');
+        const color = colores[tipos[0]] || '#f5f5f5';
+        
+        row.addEventListener('mouseover', () => {
+            row.style.backgroundColor = color;
+        });
+        row.addEventListener('mouseout', () => {
+            row.style.backgroundColor = '';
+        });
+    });
+    document.querySelectorAll('th').forEach((th, index) => {
+        th.style.cursor = 'pointer';
+        let asc = true;
+        
+        th.addEventListener('click', () => {
+            const tabla = th.closest('table');
+            const filas = Array.from(tabla.querySelectorAll('tbody tr'));
+            
+            filas.sort((a, b) => {
+                const valA = a.cells[index].innerText.trim();
+                const valB = b.cells[index].innerText.trim();
+                
+                const numA = parseFloat(valA);
+                const numB = parseFloat(valB);
+                
+                if (!isNaN(numA) && !isNaN(numB)) {
+                    return asc ? numA - numB : numB - numA;
+                }
+                return asc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+            });
+            
+            filas.forEach(fila => tabla.querySelector('tbody').appendChild(fila));
+            asc = !asc;
+        });
+    });
+    </script>
     </table>
 </body>
 </html>

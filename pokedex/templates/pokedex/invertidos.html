@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Transformación - Pokedex HP</title>
+    <title>Invertidos - Pokedex</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f0f4f8; padding: 20px; }
         h1 { color: #0096d6; }
@@ -47,5 +47,32 @@
             {% endfor %}
         </tbody>
     </table>
+    <script>
+    document.querySelectorAll('th').forEach((th, index) => {
+        th.style.cursor = 'pointer';
+        let asc = true;
+        
+        th.addEventListener('click', () => {
+            const tabla = th.closest('table');
+            const filas = Array.from(tabla.querySelectorAll('tbody tr'));
+            
+            filas.sort((a, b) => {
+                const valA = a.cells[index].innerText.trim();
+                const valB = b.cells[index].innerText.trim();
+                
+                const numA = parseFloat(valA);
+                const numB = parseFloat(valB);
+                
+                if (!isNaN(numA) && !isNaN(numB)) {
+                    return asc ? numA - numB : numB - numA;
+                }
+                return asc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+            });
+            
+            filas.forEach(fila => tabla.querySelector('tbody').appendChild(fila));
+            asc = !asc;
+        });
+    });
+    </script>
 </body>
 </html>

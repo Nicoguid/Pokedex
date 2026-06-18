@@ -24,4 +24,4 @@ def filtro_combinado(request):
 def transformacion(request):
     pokemons = Pokemon.objects.all()
     lista_pokemons = [{'nombre': p.nombre, 'nombre_invertido': p.nombre[::-1]} for p in pokemons]
-    return render(request, 'pokedex/transformacion.html', {'pokemon_list': lista_pokemons})
+    return render(request, 'pokedex/invertidos.html', {'pokemon_list': lista_pokemons})
